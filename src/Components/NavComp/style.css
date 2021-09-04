@@ -1,0 +1,32 @@
+.nav-comp{
+    /* background-color: #41493B!important; */
+    background-color: rgba(65, 73, 59,0.8) !important;
+    font-family: 'Bebas Neue', cursive;
+}
+
+.navbar-brand{
+    color: #F6FBF2!important;
+    font-size: 2em;
+}
+
+.nav-link{
+    color: rgba(246,251,242,0.65)!important;
+}
+
+.nav-link {
+    font-size: 1.35rem !important;
+}
+
+.nav-link:hover{
+    color: #F6FBF2!important;
+}
+
+.navbar-toggler{
+    color: #F6FBF2!important;
+    border-color: rgba(246,251,242,0.45)!important;
+}
+
+.navbar{
+    padding-top: 0.25rem;
+    padding-bottom: 0.25rem;
+}

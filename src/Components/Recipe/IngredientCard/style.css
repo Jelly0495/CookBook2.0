@@ -1,0 +1,32 @@
+.ingredient-card{
+    cursor: pointer;
+    /* border-color: rgb(139, 139, 139); */
+    background-color: rgba(246,251,242, 0.85) !important;
+    /* background-color: rgba(248, 216, 128, 0.85) !important; */
+    box-shadow: 0 4px 5px 0 rgba(0, 0, 0, 0.2), 0 6px 10px 0 rgba(0, 0, 0, 0.19);
+}
+
+.ingredient-card:hover{
+    background-color: rgba(246, 251, 242, 0.6) !important;
+    /* background-color: rgba(184, 159, 92, 0.712) !important; */
+}
+
+.ingredient-card-selected{
+    cursor: pointer;
+    /* border-color: darkgreen; */
+    background-color: rgba(235, 255, 235, 0.85) !important;
+    box-shadow: 0 4px 5px 0 rgba(0, 0, 0, 0.2), 0 6px 10px 0 rgba(0, 0, 0, 0.19);
+}
+
+.done-text{
+    color: darkgreen;
+}
+
+.card-body p{
+    font-size: .75em;
+    margin-bottom: 0;
+}
+
+.card-body{
+    padding: .6rem .6rem;
+}

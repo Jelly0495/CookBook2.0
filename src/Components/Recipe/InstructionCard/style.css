@@ -1,0 +1,7 @@
+.instruction-card .card{
+    cursor: pointer;
+}
+
+.instruction-card{
+    background-color: rgba(246,251,242,0.85);
+}
