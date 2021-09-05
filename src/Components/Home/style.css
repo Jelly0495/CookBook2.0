@@ -1,0 +1,67 @@
+.home {
+  color: #41493b;
+}
+
+.home p {
+  font-family: "Bebas Neue", cursive;
+}
+
+.home-text {
+  font-size: 7rem;
+  line-height: 6rem;
+  margin-top: 20%;
+  animation: fadeIn 2.5s ease;
+}
+
+.home-dropdown{
+    margin-top: 20%;
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 100px;
+  }
+}
+
+.yellow {
+  color: #f8d780;
+  -webkit-text-stroke-width: 0.5px;
+  -webkit-text-stroke-color: #41493b;
+}
+
+.css-19chxnm-control{
+    border-color: #41493b !important;
+    box-shadow: none !important;
+}
+
+.css-r11et3-control:focus{
+    box-shadow: none !important;
+    border-color: #41493b !important;
+}
+
+.css-r11et3-control{
+    box-shadow: none !important;
+    border-color: #41493b !important;
+}
+
+.btn-secondary{
+  background-color: #41493b;
+  color:#F6FBF2;
+}
+
+.btn-secondary:hover{
+  background-color: rgba(65, 73, 59,0.80);
+}
+
+.button-link{
+  font-family: "Bebas Neue", cursive;
+  color: #F6FBF2;
+  text-decoration: none;
+}
+
+.button-link:hover{
+  color: #F6FBF2;
+}

@@ -1,0 +1,7 @@
+.footer{
+    min-height: 58px;
+    padding-top: 0.25rem;
+    padding-bottom: 0.25rem;
+    background-color: rgba(65, 73, 59,0.8) !important;
+    width: 100%;
+}

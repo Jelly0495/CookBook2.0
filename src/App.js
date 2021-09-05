@@ -4,8 +4,8 @@ import About from "./Components/About/About";
 import Home from "./Components/Home/Home";
 import NewRecipe from "./Components/NewRecipe/NewRecipe";
 import NavComp from "./Components/NavComp/NavComp";
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Footer from "./Components/Footer/Footer";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
 function App() {
   return (
@@ -15,13 +15,13 @@ function App() {
           <NavComp></NavComp>
           <Switch>
             <Route path="/" exact component={Home} />
-            <Route path="/recipe" component={Recipe} />
+            <Route path="/recipe/:id" component={Recipe} />
             <Route path="/newrecipe" component={NewRecipe} />
             <Route path="/about" component={About} />
           </Switch>
-          {/* <Footer></Footer> */}
         </main>
       </div>
+      <Footer></Footer>
     </Router>
   );
 }

@@ -7,7 +7,7 @@ function IngredientsTab(props) {
     <div className="row row-cols-1 row-cols-md-3 g-2">
       {props.ingredients.map((card) => {
         return (
-          <div className="col">
+          <div key={card.title} className="col">
             <IngredientCard
               title={card.title}
               description={card.description}

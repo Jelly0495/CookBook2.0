@@ -1,0 +1,17 @@
+.error-500 {
+    color: #41493b;
+  }
+  
+  .error-500 p {
+    font-family: "Bebas Neue", cursive;
+  }
+  
+  .error-500-text {
+    font-size: 7rem;
+    line-height: 6rem;
+    margin-top: 20%;
+  }
+  
+  .error-small{
+    font-size: 2rem;
+  }
