@@ -30,6 +30,7 @@
   color: #f8d780;
   -webkit-text-stroke-width: 0.5px;
   -webkit-text-stroke-color: #41493b;
+  display:  inline-block;
 }
 
 .css-19chxnm-control{
@@ -64,4 +65,45 @@
 
 .button-link:hover{
   color: #F6FBF2;
+}
+
+.shaky{
+  animation: shake 8s infinite ease-in-out;
+}
+
+.shaky2{
+  animation: shake 6s infinite ease-in-out;
+  animation-delay: 3s;
+}
+
+.shaky3{
+  animation: shaketwo 7s infinite ease-in-out;
+  animation-delay: 1s;
+  animation-direction:reverse;
+}
+
+@keyframes shake {
+	
+  0%   { transform:  rotate(0deg);   }
+  20%  { transform:  rotate(0deg) scale(1); }
+  23%  { transform:  rotate(-2deg) scale(0.8); }
+  25%  { transform:  rotate(0deg) scale(1.1); }
+  29%  { transform:  rotate(8deg) scale(0.8); }
+  30%  { transform:  rotate(0deg) scale(1); }
+  93%  { transform:  rotate(0deg);   }
+  95%  { transform:  rotate(10deg);  }
+  97%  { transform:  rotate(-10deg); }
+  100% { transform:  rotate(0deg);   }
+
+}
+
+@keyframes shaketwo {
+	
+  0%   { transform:  rotate(0deg);   }
+  20%  { transform:  rotate(0deg) }
+  90%  { transform:  rotate(0deg);   }
+  95%  { transform:  rotate(10deg);  }
+  97%  { transform:  rotate(-10deg); }
+  100% { transform:  rotate(0deg);   }
+
 }

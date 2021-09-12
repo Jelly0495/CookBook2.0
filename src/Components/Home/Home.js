@@ -64,11 +64,11 @@ function Home() {
       <div className="container home">
         <div className="row">
           <p className="home-text col-md-6 text-left">
-            What <span className="yellow">do</span> you
+            What <span className="yellow shaky2">do</span> you
             <br />
             <span className="yellow">want</span> to
             <br />
-            cook<span className="yellow">?</span>
+            cook<span className="yellow shaky3">?</span>
             <br />
           </p>
           <div className="home-dropdown col-md-6">
@@ -79,14 +79,14 @@ function Home() {
             ></Select>
             {selectedValue == 0 ? (
               <button
-                className="btn btn-secondary btn-lg mt-2"
+                className="btn btn-secondary btn-lg mt-3 shaky"
                 type="button"
                 disabled
               >
                 <span className="button-link">Select recipe</span>
               </button>
             ) : (
-              <button className="btn btn-secondary btn-lg mt-2" type="button">
+              <button className="btn btn-secondary btn-lg mt-3 shaky" type="button">
                 <Link className="button-link" to={"/recipe/" + selectedValue}>
                   Go to...
                 </Link>

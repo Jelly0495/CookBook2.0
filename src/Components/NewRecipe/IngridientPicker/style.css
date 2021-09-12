@@ -1,0 +1,9 @@
+.ingredient-picker input, textarea, select, option{
+    background-color: #F6FBF2 !important;
+    color:#41493B;
+}
+
+.ingredient-picker input, textarea, select, option:focus{
+    box-shadow: none !important;
+    border-color: #41493b !important;
+}

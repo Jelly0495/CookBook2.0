@@ -2,10 +2,11 @@
     font-family: 'Bebas Neue', cursive;
 }
 
-.quote-text {
-    font-size: 1.18rem !important;
-}
-
 .recipe-wrapper{
     color: #41493B;
+}
+
+
+.quote-text {
+    font-size: 1.18rem !important;
 }

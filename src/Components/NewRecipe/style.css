@@ -1,0 +1,61 @@
+h1{
+    font-family: 'Bebas Neue', cursive;
+}
+
+.new-recipe{
+    color: #41493B;
+}
+
+.yellow {
+    color: #f8d780;
+    -webkit-text-stroke-width: 0.5px;
+    -webkit-text-stroke-color: #41493b;
+    display:  inline-block;
+  }
+
+  .letter-hop{
+    animation: hop 5s infinite ease-in-out;
+    animation-delay: 1s;
+  }
+
+  .letter-hop2{
+    animation: hop 5s infinite ease-in-out;
+    animation-delay: 1.2s;
+  }
+
+  .letter-hop3{
+    animation: hop 5s infinite ease-in-out;
+    animation-delay: 1.4s;
+  }
+
+  .letter-hop4{
+    animation: hop 5s infinite ease-in-out;
+    animation-delay: 1.6s;
+  }
+
+  .letter-hop5{
+    animation: hop 5s infinite ease-in-out;
+    animation-delay: 1.8s;
+  }
+
+  .letter-hop6{
+    animation: hop 5s infinite ease-in-out;
+    animation-delay: 2s;
+  }
+  
+  @keyframes hop {
+    0%  {transform: translate(0px, 0px); }
+    2%  {transform: translate(0px, -5px); }
+    4%  {transform: translate(0px, 0px); }
+    100%  {transform: translate(0px, 0px); }
+  }
+
+  .btn-danger{
+    border-color: #41493b !important;
+  }
+
+
+  .btn-primary, .btn-danger:focus{
+    box-shadow: none !important;
+    border-color: #41493b !important;
+  }
