@@ -1,0 +1,28 @@
+/* .instruction-picker input, textarea, select, option{
+    background-color: #F6FBF2 !important;
+    color:#41493B;
+}
+
+.instruction-picker input, textarea, select, option:focus{
+    box-shadow: none !important;
+    border-color: #41493b !important;
+} */
+
+.btn-primary{
+    font-family: "Bebas Neue", cursive;
+    font-size: 1.25rem;
+}
+
+.btn-danger{
+    font-family: "Bebas Neue", cursive;
+    font-size: 1.25rem;
+}
+
+.btn-secondary{
+    font-family: "Bebas Neue", cursive;
+    font-size: 1.75rem;
+}
+
+.infotext{
+    font-size: 1.6rem;
+}

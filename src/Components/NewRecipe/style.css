@@ -2,6 +2,12 @@ h1{
     font-family: 'Bebas Neue', cursive;
 }
 
+strong{
+  font-family: 'Bebas Neue', cursive;
+  font-size: 1.3rem;
+  letter-spacing: 1.5px;
+}
+
 .new-recipe{
     color: #41493B;
 }

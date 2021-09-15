@@ -86,7 +86,10 @@ function Home() {
                 <span className="button-link">Select recipe</span>
               </button>
             ) : (
-              <button className="btn btn-secondary btn-lg mt-3 shaky" type="button">
+              <button
+                className="btn btn-secondary btn-lg mt-3 shaky"
+                type="button"
+              >
                 <Link className="button-link" to={"/recipe/" + selectedValue}>
                   Go to...
                 </Link>
