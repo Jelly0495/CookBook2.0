@@ -1,5 +1,8 @@
 import { React, useState, useEffect } from "react";
 import { Form, Button } from "react-bootstrap";
+import { useHistory } from "react-router-dom";
+import { v5 as uuidv5 } from "uuid";
+import { v4 as uuidv4 } from "uuid";
 import IngredientPicker from "./IngridientPicker/IngridientPicker";
 import InstructionPicker from "./InstructionPicker/InstructionPicker";
 import config from "../../config.json";
@@ -18,6 +21,8 @@ function NewRecipe() {
   const [instructions, setInstructions] = useState([]);
   const [selectedFiles, setSelectedFiles] = useState(null);
 
+  let history = useHistory();
+
   const sendIngredientsToRecipe = (ingredientArray) => {
     setIngredients(ingredientArray);
   };
@@ -28,15 +33,34 @@ function NewRecipe() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    let images = [
-      {"source" : config.SLIDESHOW_DEFAULT_1, "alt" : "Default image 1"},
-      {"source" : config.SLIDESHOW_DEFAULT_2, "alt" : "Default image 2"},
-      {"source" : config.SLIDESHOW_DEFAULT_3, "alt" : "Default image 3"}
-    ];
 
-    // if (!isChecked) {
-    //   images = selectedFiles;
-    // }
+    let images = [];
+    let imageNames = [];
+    if (isChecked) {
+      images = [
+        {
+          source: `${config.SLIDESHOW_DEFAULT_1}?${config.IMAGE_CONTAINER_SAS}`,
+          alt: "Default image 1",
+        },
+        {
+          source: `${config.SLIDESHOW_DEFAULT_2}?${config.IMAGE_CONTAINER_SAS}`,
+          alt: "Default image 2",
+        },
+        {
+          source: `${config.SLIDESHOW_DEFAULT_3}?${config.IMAGE_CONTAINER_SAS}`,
+          alt: "Default image 3",
+        },
+      ];
+    } else {
+      for (let i = 0; i < selectedFiles.length; i++) {
+        var newName = uuidv5(selectedFiles[i].name, uuidv4());
+        imageNames.push(newName);
+        images.push({
+          source: `${config.CONTAINER_URI}/${newName}?${config.IMAGE_CONTAINER_SAS}`,
+          alt: `Image ${newName}`,
+        });
+      }
+    }
 
     let formData = {
       title: title,
@@ -45,23 +69,48 @@ function NewRecipe() {
       instructions: instructions,
       images: images,
     };
+    let promises = [];
+
+    if (!isChecked) {
+      let postImageUrl = config.API_SERVER_URL + "/recipe/UploadImage";
+      for (let i = 0; i < selectedFiles.length; i++) {
+        let data = new FormData();
+        let file = new File([selectedFiles[i]], imageNames[i], {
+          type: "multipart/form-data",
+        });
+        let url = `${postImageUrl}?filename=${imageNames[i]}`;
+        data.append(`file${i}`, file);
+
+        let header = {
+          "Content-Type": "multipart/form-data",
+          "Ocp-Apim-Subscription-Key": config.API_SUBSCRIPTION_KEY,
+        };
+        promises.push(
+          axios.post(url, data, { headers: header }).then((response) => {
+            console.log(response);
+          })
+        );
+      }
+    }
 
     let postUrl = config.API_SERVER_URL + "/recipe/AddRecipe";
     const headers = {
-      'Content-Type': 'application/json',
-      "Ocp-Apim-Subscription-Key": config.API_SUBSCRIPTION_KEY
-    }
-    
-    axios
-      .post(postUrl, {
-        recipe: formData,
-      }, {
-        headers: headers
-      })
-      .then((response) => {
-        console.log(response.data);
-      });
+      "Content-Type": "application/json",
+      "Ocp-Apim-Subscription-Key": config.API_SUBSCRIPTION_KEY,
+    };
 
+    promises.push(
+      axios
+        .post(postUrl, { recipe: formData }, { headers: headers })
+        .then((response) => {
+          console.log(response.data);
+          if (response.status == 200) {
+            history.push("/");
+          }
+        })
+    );
+
+    Promise.all(promises);
   };
 
   return (

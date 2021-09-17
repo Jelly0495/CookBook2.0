@@ -5,3 +5,9 @@
     background-color: rgba(65, 73, 59,0.8) !important;
     width: 100%;
 }
+
+.footer i:hover{
+    color: #F6FBF2!important;
+    text-shadow: 2px 2px 4px #4b4b4b;
+    transform: scale(1.3);
+}

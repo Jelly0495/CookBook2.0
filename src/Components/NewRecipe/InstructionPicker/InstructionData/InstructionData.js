@@ -35,6 +35,7 @@ function InstructionData(props) {
             <strong>#{idCounter} Step title :</strong>
           </Form.Label>
           <Form.Control
+            required
             disabled={disabled}
             onChange={handleTitleChange}
             placeholder="Title"
@@ -47,6 +48,7 @@ function InstructionData(props) {
             <strong>Step Description :</strong>
           </Form.Label>
           <Form.Control
+            required
             onChange={handleDescriptionChange}
             as="textarea"
             placeholder="Description"

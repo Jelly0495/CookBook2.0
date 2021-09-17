@@ -75,7 +75,6 @@ function IngredientData(props) {
           onChange={handleUnitChange}
           disabled={disabled}
         >
-          <option key="0">Unit</option>
           <option key="1" value="g">
             g
           </option>

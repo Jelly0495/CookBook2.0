@@ -3,7 +3,7 @@ import Recipe from "./Components/Recipe/Recipe";
 import About from "./Components/About/About";
 import Home from "./Components/Home/Home";
 import NewRecipe from "./Components/NewRecipe/NewRecipe";
-import NavComp from "./Components/NavComp/NavComp";
+import Navigation from "./Components/Navigation/Navigation";
 import Footer from "./Components/Footer/Footer";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
@@ -12,7 +12,7 @@ function App() {
     <Router>
       <div className="app">
         <main>
-          <NavComp></NavComp>
+          <Navigation></Navigation>
           <Switch>
             <Route path="/" exact component={Home} />
             <Route path="/recipe/:id" component={Recipe} />

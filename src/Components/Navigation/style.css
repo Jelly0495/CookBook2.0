@@ -14,11 +14,14 @@
 }
 
 .nav-link {
-    font-size: 1.35rem !important;
+    font-size: 1.55rem !important;
+    transition: all .2s ease-in-out;
+    margin-right: 0.5rem;
 }
 
 .nav-link:hover{
     color: #F6FBF2!important;
+    text-shadow: 2px 2px 4px #4b4b4b;
 }
 
 .navbar-toggler{

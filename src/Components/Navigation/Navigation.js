@@ -4,17 +4,12 @@ import { Navbar, Container, Nav } from "react-bootstrap";
 import "./style.css";
 import Logo from "../../Assets/1.png";
 
-function NavComp() {
+function Navigation() {
   return (
     <Navbar className="nav-comp" bg="dark" variant="dark" expand="lg">
       <Container>
         <Navbar.Brand as={Link} to="/">
-          <img
-            src={Logo}
-            width="70"
-            height="40"
-            alt="Logo"
-          />
+          <img src={Logo} width="70" height="40" alt="Logo" />
         </Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
@@ -22,9 +17,6 @@ function NavComp() {
             <Nav.Link as={Link} to="/">
               Home
             </Nav.Link>
-            {/* <Nav.Link as={Link} to="/recipe">
-              Recipe
-            </Nav.Link> */}
             <Nav.Link as={Link} to="/newrecipe">
               New Recipe
             </Nav.Link>
@@ -38,4 +30,4 @@ function NavComp() {
   );
 }
 
-export default NavComp;
+export default Navigation;
