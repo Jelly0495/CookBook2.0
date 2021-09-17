@@ -1,13 +1,14 @@
 import { React, useState, useEffect } from "react";
-import { Form, Button } from "react-bootstrap";
 import { useHistory } from "react-router-dom";
-import { v5 as uuidv5 } from "uuid";
-import { v4 as uuidv4 } from "uuid";
+import { Form, Button } from "react-bootstrap";
 import IngredientPicker from "./IngridientPicker/IngridientPicker";
 import InstructionPicker from "./InstructionPicker/InstructionPicker";
-import config from "../../config.json";
 import axios from "axios";
+import { v5 as uuidv5 } from "uuid";
+import { v4 as uuidv4 } from "uuid";
+import config from "../../config.json";
 import "./style.css";
+import bgImage from "../../Assets/bg-2.jpg";
 
 function NewRecipe() {
   const [isChecked, setIsChecked] = useState(false);
@@ -22,6 +23,10 @@ function NewRecipe() {
   const [selectedFiles, setSelectedFiles] = useState(null);
 
   let history = useHistory();
+
+  document.body.style.backgroundImage = `url('${bgImage}')`;
+  document.getElementById("root").style.backgroundImage =
+    "linear-gradient(rgb(170 213 142 / 45%), rgb(116 173 90 / 70%))";
 
   const sendIngredientsToRecipe = (ingredientArray) => {
     setIngredients(ingredientArray);

@@ -6,6 +6,11 @@
     width: 100%;
 }
 
+.footer i{
+    color: rgba(246, 251, 242, 0.65);
+    transition: all .1s ease-in-out;
+}
+
 .footer i:hover{
     color: #F6FBF2!important;
     text-shadow: 2px 2px 4px #4b4b4b;

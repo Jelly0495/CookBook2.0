@@ -9,7 +9,7 @@ function Navigation() {
     <Navbar className="nav-comp" bg="dark" variant="dark" expand="lg">
       <Container>
         <Navbar.Brand as={Link} to="/">
-          <img src={Logo} width="70" height="40" alt="Logo" />
+          <img src={Logo} width={65} alt="Logo" />
         </Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">

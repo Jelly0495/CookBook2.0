@@ -32,7 +32,7 @@ function Footer() {
           </a>
           <a
             className="btn btn-link btn-floating btn-lg text-light m-1"
-            href="https://www.linkedin.com/in/richard-uzik-accenture/"
+            href="https://www.linkedin.com/in/richard-uzik-accenture"
             role="button"
             data-mdb-ripple-color="light"
           >

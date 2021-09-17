@@ -1,10 +1,11 @@
 import { React, useState, useEffect } from "react";
-import Select from "react-select";
 import { Link } from "react-router-dom";
-import "./style.css";
-import config from "../../config.json";
+import Select from "react-select";
 import Error500 from "../Error500/Error500";
 import Loader from "../Loader/Loader";
+import config from "../../config.json";
+import "./style.css";
+import bgImage from '../../Assets/explosion.jpg';
 
 var options = [];
 
@@ -28,6 +29,10 @@ function Home() {
   const [isLoaded, setIsLoaded] = useState(false);
   const [items, setItems] = useState([]);
   const [selectedValue, setSelectedValue] = useState(0);
+
+  document.body.style.backgroundImage = `url('${bgImage}')`;
+  document.getElementById("root").style.backgroundImage =
+    "linear-gradient(to bottom, rgba(170, 213, 142,0.1),rgba(170, 213, 142,0.4))";
 
   const handleChange = (e) => {
     setSelectedValue(e.value);
