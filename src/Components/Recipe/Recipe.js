@@ -3,7 +3,7 @@ import { useParams } from "react-router-dom";
 import IngredientsTab from "./IngredientsTab/IngredientsTab";
 import InstructionsTab from "./InstructionsTab/InstructionTab";
 import Slideshow from "./Slideshow/Slideshow";
-import Error500 from "../Error500/Error500";
+import Maintenance from "../Maintenance/Maintenance";
 import Loader from "../Loader/Loader";
 import config from "../../config.json";
 import "./style.css";
@@ -42,7 +42,7 @@ function Recipe() {
   }, []);
 
   if (error) {
-    return <Error500></Error500>;
+    return <Maintenance></Maintenance>;
   } else if (!isLoaded) {
     return <Loader></Loader>;
   } else {

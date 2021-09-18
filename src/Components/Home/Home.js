@@ -1,15 +1,26 @@
+import axios from "axios";
 import { React, useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import Select from "react-select";
-import Error500 from "../Error500/Error500";
-import Loader from "../Loader/Loader";
-import config from "../../config.json";
+
+import Loader from "Components/Loader/Loader";
+import Maintenance from "Components/Maintenance/Maintenance";
+
+import config from "config.json";
+import bgImage from "Assets/explosion.jpg";
 import "./style.css";
-import bgImage from '../../Assets/explosion.jpg';
 
-var options = [];
+let selectOptions = [];
+const setSelectOptions = (data) => {
+  data.recipes.map((option) => {
+    selectOptions.push({
+      value: option.id,
+      label: option.name,
+    });
+  });
+};
 
-const CustomStyle = {
+const customStyle = {
   control: (styles) => ({ ...styles, backgroundColor: "#F6FBF2" }),
   option: (base, state) => ({
     ...base,
@@ -18,93 +29,60 @@ const CustomStyle = {
   }),
 };
 
-const setOptions = function (data) {
-  for (let i = 0; i < data.recipes.length; i++) {
-    options[i] = { value: data.recipes[i].id, label: data.recipes[i].name };
-  }
-};
-
 function Home() {
   const [error, setError] = useState(null);
   const [isLoaded, setIsLoaded] = useState(false);
-  const [items, setItems] = useState([]);
-  const [selectedValue, setSelectedValue] = useState(0);
+  const [selectedRecipe, setSelectedRecipe] = useState(null);
 
+  const recipesApiUrl = `${config.API_SERVER_URL}/recipe/GetRecipes`;
+  const headers = {"Ocp-Apim-Subscription-Key" : config.API_SUBSCRIPTION_KEY};
   document.body.style.backgroundImage = `url('${bgImage}')`;
-  document.getElementById("root").style.backgroundImage =
-    "linear-gradient(to bottom, rgba(170, 213, 142,0.1),rgba(170, 213, 142,0.4))";
 
-  const handleChange = (e) => {
-    setSelectedValue(e.value);
+  const handleSelectChange = (e) => {
+    setSelectedRecipe(e.value);
   };
 
   useEffect(() => {
-    fetch(config.API_SERVER_URL + "/recipe/GetRecipes", {
-      method: "GET",
-      headers: {
-        "Ocp-Apim-Subscription-Key": config.API_SUBSCRIPTION_KEY,
-      },
+    axios.get(recipesApiUrl, { headers: headers })
+    .then((result) => {
+      setSelectOptions(result.data);
+      setIsLoaded(true);
     })
-      .then((res) => res.json())
-      .then(
-        (result) => {
-          setItems(result);
-          setOptions(result);
-        },
-        (error) => {
-          setError(error);
-        }
-      )
-      .finally(() => {
-        setIsLoaded(true);
-      });
+    .catch((error) => setError(error));
   }, []);
 
-  if (error) {
-    return <Error500></Error500>;
-  } else if (!isLoaded) {
-    return <Loader></Loader>;
-  } else {
-    return (
-      <div className="container home">
-        <div className="row">
-          <p className="home-text col-md-6 text-left">
-            What <span className="yellow shaky2">do</span> you
-            <br />
-            <span className="yellow">want</span> to
-            <br />
-            cook<span className="yellow shaky3">?</span>
-            <br />
-          </p>
-          <div className="home-dropdown col-md-6">
-            <Select
-              styles={CustomStyle}
-              options={options}
-              onChange={handleChange}
-            ></Select>
-            {selectedValue == 0 ? (
-              <button
-                className="btn btn-secondary btn-lg mt-3 shaky"
-                type="button"
-                disabled
-              >
-                <span className="button-link">Select recipe</span>
-              </button>
-            ) : (
-              <button
-                className="btn btn-secondary btn-lg mt-3 shaky"
-                type="button"
-              >
-                <Link className="button-link" to={"/recipe/" + selectedValue}>
-                  Go to...
-                </Link>
-              </button>
-            )}
+  return (
+    <>
+      {error && <Maintenance />}
+      {!isLoaded && <Loader />}
+      {isLoaded && (
+        <div className="container home">
+          <div className="row">
+            <p className="home-text col-md-6 text-left">
+              What <span className="yellow shaky2">do</span> you
+              <br />
+              <span className="yellow">want</span> to
+              <br />
+              cook<span className="yellow shaky3">?</span>
+              <br />
+            </p>
+            <div className="home-dropdown col-md-6">
+              <Select
+                styles={customStyle}
+                options={selectOptions}
+                onChange={handleSelectChange}
+              />
+              <button className="btn btn-secondary btn-lg mt-3 shaky" disabled={!selectedRecipe}>
+                {selectedRecipe 
+                  ? <Link className="button-link" to={`/recipe/${selectedRecipe}`}>Go to...</Link>
+                  : <span className="button-link">Select recipe</span>}
+                </button>
+            </div>
           </div>
         </div>
-      </div>
-    );
-  }
+      )}
+    </>
+  );
 }
 
 export default Home;

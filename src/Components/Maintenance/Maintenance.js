@@ -1,7 +1,7 @@
 import React from "react";
 import "./style.css";
 
-function Error500() {
+function Maintenance() {
   return (
     <div className="container error-500">
       <p className="error-500-text">
@@ -13,4 +13,4 @@ function Error500() {
   );
 }
 
-export default Error500;
+export default Maintenance;

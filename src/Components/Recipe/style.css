@@ -1,5 +1,6 @@
 .recipe-wrapper h1{
     font-family: 'Bebas Neue', cursive;
+    text-shadow: 5px 5px 4px rgba(65, 73, 59,0.4);
 }
 
 .recipe-wrapper{

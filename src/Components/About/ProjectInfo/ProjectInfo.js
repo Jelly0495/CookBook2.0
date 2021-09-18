@@ -6,8 +6,8 @@ function ProjectInfo(props) {
       <h1 className="display-1 text-center">{props.headline}</h1>
       <blockquote class="blockquote">
         <p className="box-p">
-          In this section I will try to explain why I decided to create a
-          CookBook app. First of all, of course, I love cooking. Ever since I
+          In this section I will try to explain why I decided to create the
+          Cook Book app. First of all, of course, I love cooking. Ever since I
           was a little kid, I've been hanging around in my mom or grandma's
           kitchen. I was always diligently helping them and watching the
           creation of what the whole family would then sit down to for lunch. As

@@ -1,7 +1,21 @@
-.instruction-card .card{
-    cursor: pointer;
+.instruction-card .card {
+  cursor: pointer;
 }
 
-.instruction-card{
-    background-color: rgba(246,251,242,0.85);
+.instruction-card {
+  background-color: rgba(246, 251, 242, 0.85);
+}
+
+.card-text {
+  -webkit-touch-callout: none; /* iOS Safari */
+  -webkit-user-select: none; /* Safari */
+  -khtml-user-select: none; /* Konqueror HTML */
+  -moz-user-select: none; /* Old versions of Firefox */
+  -ms-user-select: none; /* Internet Explorer/Edge */
+  user-select: none; /* Non-prefixed version, currently
+                                  supported by Chrome, Edge, Opera and Firefox */
+}
+
+.instruction-card-selected {
+  background-color: rgba(186, 252, 186, 0.85);
 }
