@@ -5,20 +5,11 @@ import Select from "react-select";
 
 import Loader from "Components/Loader/Loader";
 import Maintenance from "Components/Maintenance/Maintenance";
+import LandingText from "./LandingText/LandingText";
 
 import config from "config.json";
 import bgImage from "Assets/explosion.jpg";
 import "./style.css";
-
-let selectOptions = [];
-const setSelectOptions = (data) => {
-  data.recipes.map((option) => {
-    selectOptions.push({
-      value: option.id,
-      label: option.name,
-    });
-  });
-};
 
 const customStyle = {
   control: (styles) => ({ ...styles, backgroundColor: "#F6FBF2" }),
@@ -33,6 +24,8 @@ function Home() {
   const [error, setError] = useState(null);
   const [isLoaded, setIsLoaded] = useState(false);
   const [selectedRecipe, setSelectedRecipe] = useState(null);
+  const [apiRecipeData, setApiRecipeData] = useState(null);
+  const [selectOptions, setSelectOptions] = useState([]);
 
   const recipesApiUrl = `${config.API_SERVER_URL}/recipe/GetRecipes`;
   const headers = {"Ocp-Apim-Subscription-Key" : config.API_SUBSCRIPTION_KEY};
@@ -45,11 +38,20 @@ function Home() {
   useEffect(() => {
     axios.get(recipesApiUrl, { headers: headers })
     .then((result) => {
-      setSelectOptions(result.data);
+      setApiRecipeData(result.data.recipes);
       setIsLoaded(true);
     })
     .catch((error) => setError(error));
   }, []);
+
+  useEffect(() => {
+    if(apiRecipeData){
+      const selectOptions = apiRecipeData.map((option) => {
+        return { value: option.id, label: option.name };
+      });
+      setSelectOptions(selectOptions);
+    }
+  }, [apiRecipeData]);
 
   return (
     <>
@@ -58,14 +60,9 @@ function Home() {
       {isLoaded && (
         <div className="container home">
           <div className="row">
-            <p className="home-text col-md-6 text-left">
-              What <span className="yellow shaky2">do</span> you
-              <br />
-              <span className="yellow">want</span> to
-              <br />
-              cook<span className="yellow shaky3">?</span>
-              <br />
-            </p>
+            <div className="home-text col-md-6 text-left">
+              <LandingText />
+            </div>
             <div className="home-dropdown col-md-6">
               <Select
                 styles={customStyle}
@@ -76,7 +73,7 @@ function Home() {
                 {selectedRecipe 
                   ? <Link className="button-link" to={`/recipe/${selectedRecipe}`}>Go to...</Link>
                   : <span className="button-link">Select recipe</span>}
-                </button>
+              </button>
             </div>
           </div>
         </div>
