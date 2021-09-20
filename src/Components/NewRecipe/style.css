@@ -1,67 +1,54 @@
-h1{
-    font-family: 'Bebas Neue', cursive;
+#root {
+  background-image: linear-gradient(
+    to bottom,
+    rgba(170, 213, 142, 0.05),
+    rgba(65, 73, 59, 0.25)
+  ) !important;
 }
 
-strong{
-  font-family: 'Bebas Neue', cursive;
+h1 {
+  font-family: "Bebas Neue", cursive;
+}
+
+strong {
+  font-family: "Bebas Neue", cursive;
   font-size: 1.3rem;
   letter-spacing: 1.5px;
 }
 
-.new-recipe{
-    color: #41493B;
+.new-recipe {
+  color: #41493b;
 }
 
-.yellow {
-    color: #f8d780;
-    -webkit-text-stroke-width: 0.5px;
-    -webkit-text-stroke-color: #41493b;
-    display:  inline-block;
-  }
+.letter-hop {
+  animation: hop 5s infinite ease-in-out;
+  animation-delay: calc(1000ms + calc(var(--order) * 200ms));
+  display: inline-block;
+  font-size: 7rem;
+  line-height: 0.8;
+}
 
-  .letter-hop{
-    animation: hop 5s infinite ease-in-out;
-    animation-delay: 1s;
+@keyframes hop {
+  0% {
+    transform: translate(0px, 0px);
   }
+  2% {
+    transform: translate(0px, -5px);
+  }
+  4% {
+    transform: translate(0px, 0px);
+  }
+  100% {
+    transform: translate(0px, 0px);
+  }
+}
 
-  .letter-hop2{
-    animation: hop 5s infinite ease-in-out;
-    animation-delay: 1.2s;
-  }
+.btn-danger {
+  border-color: #41493b !important;
+}
 
-  .letter-hop3{
-    animation: hop 5s infinite ease-in-out;
-    animation-delay: 1.4s;
-  }
-
-  .letter-hop4{
-    animation: hop 5s infinite ease-in-out;
-    animation-delay: 1.6s;
-  }
-
-  .letter-hop5{
-    animation: hop 5s infinite ease-in-out;
-    animation-delay: 1.8s;
-  }
-
-  .letter-hop6{
-    animation: hop 5s infinite ease-in-out;
-    animation-delay: 2s;
-  }
-  
-  @keyframes hop {
-    0%  {transform: translate(0px, 0px); }
-    2%  {transform: translate(0px, -5px); }
-    4%  {transform: translate(0px, 0px); }
-    100%  {transform: translate(0px, 0px); }
-  }
-
-  .btn-danger{
-    border-color: #41493b !important;
-  }
-
-
-  .btn-primary, .btn-danger:focus{
-    box-shadow: none !important;
-    border-color: #41493b !important;
-  }
+.btn-primary,
+.btn-danger:focus {
+  box-shadow: none !important;
+  border-color: #41493b !important;
+}

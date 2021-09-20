@@ -21,42 +21,47 @@ function InstructionData(props) {
     const obj = {
       title: title,
       description: description,
-      step: idCounter
+      step: idCounter,
     };
     props.handleAdd(obj);
     setDisabled(!disabled);
   };
 
   return (
-    <div key={props.index} className="row mb-3 instruction-picker">
-      <div className="col-md-3">
-        <Form.Group controlId={"InstructionTitle" + idCounter}>
-          <Form.Label>
-            <strong>#{idCounter} Step title :</strong>
-          </Form.Label>
-          <Form.Control
-            required
-            disabled={disabled}
-            onChange={handleTitleChange}
-            placeholder="Title"
-          />
-        </Form.Group>
+    <div key={props.index} className="mb-3 instruction-picker">
+      <div className="row">
+        <div className="row col-md-8 mx-auto">
+          <div className="col-md-6">
+            <Form.Group controlId={"InstructionTitle" + idCounter}>
+              <Form.Label>
+                <strong>#{idCounter} Step title :</strong>
+              </Form.Label>
+              <Form.Control
+                required
+                disabled={disabled}
+                onChange={handleTitleChange}
+                placeholder="Title"
+                as="textarea"
+              />
+            </Form.Group>
+          </div>
+          <div className="col-md-6">
+            <Form.Group controlId={"InstructionDescription" + idCounter}>
+              <Form.Label>
+                <strong>Step Description :</strong>
+              </Form.Label>
+              <Form.Control
+                required
+                onChange={handleDescriptionChange}
+                as="textarea"
+                placeholder="Description"
+                disabled={disabled}
+              />
+            </Form.Group>
+          </div>
+        </div>
       </div>
-      <div className="col-md-8">
-        <Form.Group controlId={"InstructionDescription" + idCounter}>
-          <Form.Label>
-            <strong>Step Description :</strong>
-          </Form.Label>
-          <Form.Control
-            required
-            onChange={handleDescriptionChange}
-            as="textarea"
-            placeholder="Description"
-            disabled={disabled}
-          />
-        </Form.Group>
-      </div>
-      <div className="col-md-1">
+      <div className="col-md-2 mx-auto mt-3 text-center">
         <Form.Group className="d-grid">
           <Form.Label>
             <strong>Instruction lock :</strong>

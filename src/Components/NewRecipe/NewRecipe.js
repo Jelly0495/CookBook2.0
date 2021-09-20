@@ -6,9 +6,10 @@ import InstructionPicker from "./InstructionPicker/InstructionPicker";
 import axios from "axios";
 import { v5 as uuidv5 } from "uuid";
 import { v4 as uuidv4 } from "uuid";
-import config from "../../config.json";
+import config from "config.json";
 import "./style.css";
-import bgImage from "../../Assets/bg-2.jpg";
+import bgImage from "Assets/abstract.jpg";
+import AnimatedWord from "./AnimatedWord/AnimatedWord";
 
 function NewRecipe() {
   const [isChecked, setIsChecked] = useState(false);
@@ -25,8 +26,6 @@ function NewRecipe() {
   let history = useHistory();
 
   document.body.style.backgroundImage = `url('${bgImage}')`;
-  document.getElementById("root").style.backgroundImage =
-    "linear-gradient(rgb(170 213 142 / 45%), rgb(116 173 90 / 70%))";
 
   const sendIngredientsToRecipe = (ingredientArray) => {
     setIngredients(ingredientArray);
@@ -34,6 +33,25 @@ function NewRecipe() {
 
   const sendInstructionsToRecipe = (instructionArray) => {
     setInstructions(instructionArray);
+  };
+
+  const handleAddIngredient = () => {
+    setIngredientCounter(IngredientCounter + 1);
+  };
+  const handleDeleteIngredient = () => {
+    let cnt = IngredientCounter === 0 ? 0 : IngredientCounter - 1;
+    setIngredientCounter(cnt);
+    ingredients.pop();
+    setIngredients(ingredients);
+  };
+  const handleAddInstructions = () => {
+    setInstructionCounter(instructionCounter + 1);
+  };
+  const handleDeleteInstructions = () => {
+    let cnt = instructionCounter === 0 ? 0 : instructionCounter - 1;
+    setInstructionCounter(cnt);
+    instructions.pop();
+    setInstructions(instructions);
   };
 
   const handleSubmit = (e) => {
@@ -120,19 +138,15 @@ function NewRecipe() {
 
   return (
     <div className="container new-recipe mt-4">
-      <h1 className="col-md-12 display-5">
-        <span className="yellow display-1 letter-hop">C</span>
-        <span className="yellow display-1 letter-hop2">R</span>
-        <span className="yellow display-1 letter-hop3">E</span>
-        <span className="yellow display-1 letter-hop4">A</span>
-        <span className="yellow display-1 letter-hop5">T</span>
-        <span className="yellow display-1 letter-hop6">E</span> your new{" "}
-        <span className="yellow">recipe</span>!
+      <h1 className="col-md-12 text-center">
+        <AnimatedWord cssClass="letter-hop">create</AnimatedWord>
+        <br />
+        your new recipe !
       </h1>
       <form onSubmit={handleSubmit}>
-        <div className="row">
-          <h1 className="col-md-12">1. upload images</h1>
-          <Form.Group controlId="recipeImagesInput" className="col-md-4 mb-3">
+        <div className="mt-5 mb-5">
+          <h1 className="col-md-12 text-center">1. upload images <i class="fas fa-images"></i></h1>
+          <Form.Group controlId="recipeImagesInput" className="col-md-4 mb-3 mx-auto text-center">
             <Form.Label>
               <strong>Choose your recipe images :</strong>
             </Form.Label>
@@ -144,7 +158,8 @@ function NewRecipe() {
               disabled={isChecked}
             />
           </Form.Group>
-          <div className="col-md-12">
+          <div className="row">
+          <div className="col-md-2 mx-auto">
             <Form.Check
               type="checkbox"
               id="images-checkbox"
@@ -154,11 +169,12 @@ function NewRecipe() {
               }}
             />
           </div>
+          </div>
         </div>
         <hr />
-        <div className="row">
-          <h1 className="col-md-12">2. About recipe</h1>
-          <div className="col-md-6">
+        <div className="row mt-5 mb-5">
+          <h1 className="col-md-12 text-center mb-4">2. About recipe <i class="fas fa-info-circle"></i></h1>
+          <div className="col-md-6 text-center">
             <Form.Group controlId="recipeTitleInput">
               <Form.Label>
                 <strong>Give your recipe some catchy title :</strong>
@@ -171,7 +187,7 @@ function NewRecipe() {
               />
             </Form.Group>
           </div>
-          <div className="col-md-6">
+          <div className="col-md-6 text-center">
             <Form.Group controlId="recipeDescriptionInput">
               <Form.Label>
                 <strong>
@@ -188,26 +204,13 @@ function NewRecipe() {
           </div>
         </div>
         <hr className="mt-4" />
-        <div className="row">
-          <h1 className="col-md-12">3. What do you need </h1>
-          <div className="col-md">
-            <Button
-              variant="primary"
-              onClick={() => {
-                setIngredientCounter(IngredientCounter + 1);
-              }}
-            >
+        <div className="row mt-5 mb-5">
+          <h1 className="col-md-12 text-center">3. What do you need <i class="fas fa-list"></i></h1>
+          <div className="col-md text-center mb-4">
+            <Button variant="primary" onClick={handleAddIngredient}>
               Add Ingredient
             </Button>{" "}
-            <Button
-              variant="danger"
-              onClick={() => {
-                let cnt = IngredientCounter === 0 ? 0 : IngredientCounter - 1;
-                setIngredientCounter(cnt);
-                ingredients.pop();
-                setIngredients(ingredients);
-              }}
-            >
+            <Button variant="danger" onClick={handleDeleteIngredient}>
               Delete Ingredient
             </Button>{" "}
           </div>
@@ -217,26 +220,13 @@ function NewRecipe() {
           ></IngredientPicker>
         </div>
         <hr></hr>
-        <div className="row">
-          <h1 className="col-md-12">4. How to do</h1>
-          <div className="col-md">
-            <Button
-              variant="primary"
-              onClick={() => {
-                setInstructionCounter(instructionCounter + 1);
-              }}
-            >
+        <div className="row mt-5 mb-5">
+          <h1 className="col-md-12 text-center">4. How to do <i class="fas fa-angle-double-right"></i></h1>
+          <div className="col-md text-center">
+            <Button variant="primary" onClick={handleAddInstructions}>
               Add Step
             </Button>{" "}
-            <Button
-              variant="danger"
-              onClick={() => {
-                let cnt = instructionCounter === 0 ? 0 : instructionCounter - 1;
-                setInstructionCounter(cnt);
-                instructions.pop();
-                setIngredients(instructions);
-              }}
-            >
+            <Button variant="danger" onClick={handleDeleteInstructions}>
               Delete Step
             </Button>{" "}
           </div>
@@ -245,7 +235,7 @@ function NewRecipe() {
             sendToRecipe={sendInstructionsToRecipe}
           ></InstructionPicker>
         </div>
-        <div className="mb-3 mt-3 text-center col-md-12">
+        <div className="mb-5 text-center col-md">
           <Button
             className="col-md-2"
             variant="secondary"
