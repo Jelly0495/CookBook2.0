@@ -7,7 +7,10 @@
     color: #41493B;
 }
 
-
 .quote-text {
     font-size: 1.18rem !important;
+}
+
+#root{
+    background-image: linear-gradient(to bottom, rgba(170, 213, 142,0.1),rgba(170, 213, 142,0.4)) !important;
 }

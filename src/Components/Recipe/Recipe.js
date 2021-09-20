@@ -1,76 +1,68 @@
+import axios from "axios";
 import { React, useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
+
+import bgImage from 'Assets/explosion.jpg';
+import Loader from "Components/Loader/Loader";
+import Maintenance from "Components/Maintenance/Maintenance";
+import config from "config.json";
+
 import IngredientsTab from "./IngredientsTab/IngredientsTab";
 import InstructionsTab from "./InstructionsTab/InstructionTab";
 import Slideshow from "./Slideshow/Slideshow";
-import Maintenance from "../Maintenance/Maintenance";
-import Loader from "../Loader/Loader";
-import config from "../../config.json";
 import "./style.css";
-import bgImage from '../../Assets/explosion.jpg';
 
 function Recipe() {
-  const { id } = useParams();
+  const [recipeData, setRecipeData] = useState([]);
   const [error, setError] = useState(null);
   const [isLoaded, setIsLoaded] = useState(false);
-  const [data, setData] = useState([]);
+  
+  const { id } = useParams();
 
+  const headers = {"Ocp-Apim-Subscription-Key" : config.API_SUBSCRIPTION_KEY};
+  const recipeDataApiUrl = `${config.API_SERVER_URL}/recipe/GetRecipe?id=${id}`;
   document.body.style.backgroundImage = `url('${bgImage}')`;
-  document.getElementById("root").style.backgroundImage =
-  "linear-gradient(to bottom, rgba(170, 213, 142,0.1),rgba(170, 213, 142,0.4))";
 
   useEffect(() => {
-    setIsLoaded(false);
-    fetch(config.API_SERVER_URL + "/recipe/GetRecipe?id=" + id, {
-      method: "GET",
-      headers: {
-        "Ocp-Apim-Subscription-Key": config.API_SUBSCRIPTION_KEY,
-      },
-    })
-      .then((res) => res.json())
-      .then(
-        (result) => {
-          setData(result);
-        },
-        (error) => {
-          setError(error);
-        }
-      )
-      .finally(() => {
+    axios.get(recipeDataApiUrl, { headers: headers})
+    .then((result) => {
+        setRecipeData(result.data);
         setIsLoaded(true);
-      });
+    })
+    .catch((error) => setError(error));
   }, []);
 
-  if (error) {
-    return <Maintenance></Maintenance>;
-  } else if (!isLoaded) {
-    return <Loader></Loader>;
-  } else {
-    return (
-      <div className="recipe-wrapper container">
-        <h1 className="display-2 mt-2">{data.title}</h1>
-        <h1 className="display-6">Ingredients list:</h1>
-        <div className="row mt-md-2">
-          <div className="col-md-6 mb-4">
-            <IngredientsTab ingredients={data.ingredients}></IngredientsTab>
+  return(
+    <>
+        {error && <Maintenance />}
+        {!isLoaded && <Loader />}
+        {isLoaded && (
+          <div className="recipe-wrapper container">
+            <h1 className="display-2 mt-2">{recipeData.title}</h1>
+            <h1 className="display-6">Ingredients list:</h1>
+            <div className="row mt-md-2">
+              <div className="col-md-6 mb-4">
+                <IngredientsTab ingredients={recipeData.ingredients}></IngredientsTab>
+              </div>
+              <div className="col-md-6">
+                <Slideshow imagedata={recipeData.images}></Slideshow>
+              </div>
+            </div>
+            <hr/>
+            <h1 className="display-6">How to proceed:</h1>
+            <div className="mb-5">
+              <InstructionsTab instructions={recipeData.instructions}></InstructionsTab>
+            </div>
+            <hr/>
+            <h1 className="display-5">Some last words:</h1>
+            <blockquote className="mb-2">
+              <p className="quote-text">"{recipeData.summary}"</p>
+            </blockquote>
           </div>
-          <div className="col-md-6">
-            <Slideshow imagedata={data.images}></Slideshow>
-          </div>
-        </div>
-        <hr></hr>
-        <h1 className="display-6">How to:</h1>
-        <div className="mb-5">
-          <InstructionsTab instructions={data.instructions}></InstructionsTab>
-        </div>
-        <hr></hr>
-        <h1 className="display-5">Some last words:</h1>
-        <blockquote className="mb-2">
-          <p className="quote-text">"{data.summary}"</p>
-        </blockquote>
-      </div>
-    );
-  }
+        )}
+    </>
+  );
+
 }
 
 export default Recipe;
