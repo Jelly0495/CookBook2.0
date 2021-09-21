@@ -1,15 +1,17 @@
+import axios from "axios";
 import { React, useState } from "react";
 import { useHistory } from "react-router-dom";
 import { Form, Button } from "react-bootstrap";
-import IngredientPicker from "./IngridientPicker/IngridientPicker";
-import InstructionPicker from "./InstructionPicker/InstructionPicker";
-import axios from "axios";
 import { v5 as uuidv5 } from "uuid";
 import { v4 as uuidv4 } from "uuid";
-import config from "config.json";
-import "./style.css";
+
 import bgImage from "Assets/abstract.jpg";
+import config from "config.json";
+
 import AnimatedWord from "./AnimatedWord/AnimatedWord";
+import IngredientPicker from "./IngridientPicker/IngridientPicker";
+import InstructionPicker from "./InstructionPicker/InstructionPicker";
+import "./style.css";
 
 function NewRecipe() {
   const [isChecked, setIsChecked] = useState(false);
@@ -22,6 +24,7 @@ function NewRecipe() {
   const [ingredients, setIngredients] = useState([]);
   const [instructions, setInstructions] = useState([]);
   const [selectedFiles, setSelectedFiles] = useState(null);
+  const [adminKey, setAdminKey] = useState("");
 
   let history = useHistory();
 
@@ -91,6 +94,7 @@ function NewRecipe() {
       ingredients: ingredients,
       instructions: instructions,
       images: images,
+      adminKey: adminKey
     };
     let promises = [];
 
@@ -231,6 +235,17 @@ function NewRecipe() {
             counter={instructionCounter}
             sendToRecipe={sendInstructionsToRecipe}
           ></InstructionPicker>
+        </div>
+        <div className="row mt-5 mb-5">
+          <h1 className="col-md-12 text-center">5. Administrator key <i className="fas fa-key"></i></h1>
+          <Form.Group controlId="AdministratorKey" className="mt-1 col-md-4 mx-auto">
+            <Form.Control
+              required
+              type="password"
+              placeholder="Key"
+              onChange={(e) => {setAdminKey(e.target.value)}}
+            />
+          </Form.Group>
         </div>
         <div className="mb-5 text-center col-md">
           <Button
