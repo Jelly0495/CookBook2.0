@@ -4,7 +4,7 @@ function ProjectInfo(props) {
   return (
     <>
       <h1 className="display-1 text-center">{props.headline}</h1>
-      <blockquote class="blockquote">
+      <blockquote className="blockquote">
         <p className="box-p">
           In this section I will try to explain why I decided to create the
           Cook Book app. First of all, of course, I love cooking. Ever since I

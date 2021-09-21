@@ -58,6 +58,7 @@ function Overview(props) {
               }
             >
               <img
+                alt="Resource Icon"
                 className="svg-icon col-md-2 mx-auto d-block"
                 src={tooltip.src}
               ></img>

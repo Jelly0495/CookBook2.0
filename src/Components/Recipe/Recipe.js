@@ -15,22 +15,21 @@ import "./style.css";
 function Recipe() {
   const [recipeData, setRecipeData] = useState([]);
   const [error, setError] = useState(null);
-  const [isLoaded, setIsLoaded] = useState(false);
-  
+  const [isLoaded, setIsLoaded] = useState(false); 
   const { id } = useParams();
-
-  const headers = {"Ocp-Apim-Subscription-Key" : config.API_SUBSCRIPTION_KEY};
+  
   const recipeDataApiUrl = `${config.API_SERVER_URL}/recipe/GetRecipe?id=${id}`;
   document.body.style.backgroundImage = `url('${bgImage}')`;
 
   useEffect(() => {
+    const headers = {"Ocp-Apim-Subscription-Key" : config.API_SUBSCRIPTION_KEY};
     axios.get(recipeDataApiUrl, { headers: headers})
     .then((result) => {
         setRecipeData(result.data);
         setIsLoaded(true);
     })
     .catch((error) => setError(error));
-  }, []);
+  }, [recipeDataApiUrl]);
 
   return(
     <>

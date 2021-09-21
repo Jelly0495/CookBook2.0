@@ -6,10 +6,11 @@ function IngredientPicker(props) {
   const ingredientGroups = [];
 
   const [ingArray, setIngArray] = useState([]);
+  const { sendToRecipe } = props; 
 
   useEffect(() => {
-    props.sendToRecipe(ingArray);
-  }, [ingArray]);
+    sendToRecipe(ingArray);
+  }, [ingArray, sendToRecipe]);
 
   const sendIngToArray = (ing) => {
     setIngArray((old) => [...old, ing]);

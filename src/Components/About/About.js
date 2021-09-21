@@ -15,7 +15,7 @@ function About() {
   return (
     <div className="about container-fluid">
       <div className="image-wrapper col-md-3 mx-auto mt-3 mb-3">
-        <img className="about-img" src={brand}></img>
+        <img className="about-img" src={brand} alt="Coobook logo"></img>
       </div>
       <div className="row col-md-10 mx-auto mt-5 mb-5">
         <div className="col-md-8 mx-auto">

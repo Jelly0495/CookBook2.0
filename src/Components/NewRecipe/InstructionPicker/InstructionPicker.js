@@ -6,10 +6,11 @@ function InstructionPicker(props) {
   const instructionGroups = [];
 
   const [insArray, setInsArray] = useState([]);
+  const { sendToRecipe } = props;
 
   useEffect(() => {
-    props.sendToRecipe(insArray);
-  }, [insArray]);
+    sendToRecipe(insArray);
+  }, [insArray, sendToRecipe]);
 
   const sendInsToArray = (ins) => {
     setInsArray((old) => [...old, ins]);

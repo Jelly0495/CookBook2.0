@@ -9,6 +9,7 @@ function AnimatedWord(props) {
         charArray.map((letter, index) => {
           return (
             <span
+              key={index}
               style={{ "--order": index + 1 }}
               className={props.cssClass}
             >

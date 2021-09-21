@@ -1,4 +1,4 @@
-import { React, useState, useEffect } from "react";
+import { React, useState } from "react";
 import { useHistory } from "react-router-dom";
 import { Form, Button } from "react-bootstrap";
 import IngredientPicker from "./IngridientPicker/IngridientPicker";
@@ -109,9 +109,7 @@ function NewRecipe() {
           "Ocp-Apim-Subscription-Key": config.API_SUBSCRIPTION_KEY,
         };
         promises.push(
-          axios.post(url, data, { headers: header }).then((response) => {
-            console.log(response);
-          })
+          axios.post(url, data, { headers: header })
         );
       }
     }
@@ -126,8 +124,7 @@ function NewRecipe() {
       axios
         .post(postUrl, { recipe: formData }, { headers: headers })
         .then((response) => {
-          console.log(response.data);
-          if (response.status == 200) {
+          if (response.status === 200) {
             history.push("/");
           }
         })
@@ -145,7 +142,7 @@ function NewRecipe() {
       </h1>
       <form onSubmit={handleSubmit}>
         <div className="mt-5 mb-5">
-          <h1 className="col-md-12 text-center">1. upload images <i class="fas fa-images"></i></h1>
+          <h1 className="col-md-12 text-center">1. upload images <i className="fas fa-images"></i></h1>
           <Form.Group controlId="recipeImagesInput" className="col-md-4 mb-3 mx-auto text-center">
             <Form.Label>
               <strong>Choose your recipe images :</strong>
@@ -173,7 +170,7 @@ function NewRecipe() {
         </div>
         <hr />
         <div className="row mt-5 mb-5">
-          <h1 className="col-md-12 text-center mb-4">2. About recipe <i class="fas fa-info-circle"></i></h1>
+          <h1 className="col-md-12 text-center mb-4">2. About recipe <i className="fas fa-info-circle"></i></h1>
           <div className="col-md-6 text-center">
             <Form.Group controlId="recipeTitleInput">
               <Form.Label>
@@ -205,7 +202,7 @@ function NewRecipe() {
         </div>
         <hr className="mt-4" />
         <div className="row mt-5 mb-5">
-          <h1 className="col-md-12 text-center">3. What do you need <i class="fas fa-list"></i></h1>
+          <h1 className="col-md-12 text-center">3. What do you need <i className="fas fa-list"></i></h1>
           <div className="col-md text-center mb-4">
             <Button variant="primary" onClick={handleAddIngredient}>
               Add Ingredient
@@ -221,7 +218,7 @@ function NewRecipe() {
         </div>
         <hr></hr>
         <div className="row mt-5 mb-5">
-          <h1 className="col-md-12 text-center">4. How to do <i class="fas fa-angle-double-right"></i></h1>
+          <h1 className="col-md-12 text-center">4. How to do <i className="fas fa-angle-double-right"></i></h1>
           <div className="col-md text-center">
             <Button variant="primary" onClick={handleAddInstructions}>
               Add Step
