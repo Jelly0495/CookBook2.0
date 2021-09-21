@@ -1,0 +1,9 @@
+{
+    "API_SERVER_URL":"https://cookbookapim.azure-api.net",
+    "API_SUBSCRIPTION_KEY":"42101a57d0bb458cbc3b99433284341b",
+    "SLIDESHOW_DEFAULT_1": "https://storageaccountcookb848e.blob.core.windows.net/cookbookimages/1.jpg",
+    "SLIDESHOW_DEFAULT_2": "https://storageaccountcookb848e.blob.core.windows.net/cookbookimages/2.jpg",
+    "SLIDESHOW_DEFAULT_3": "https://storageaccountcookb848e.blob.core.windows.net/cookbookimages/3.jpg",
+    "CONTAINER_URI": "https://storageaccountcookb848e.blob.core.windows.net/cookbookimages",
+    "IMAGE_CONTAINER_SAS": "sp=r&st=2021-09-14T14:09:05Z&se=2022-12-30T23:09:05Z&spr=https&sv=2020-08-04&sr=c&sig=piRdCQ7PA6hIqAj%2BNZDSvrThlwvMdsQsiOF6XI%2BgyzA%3D"
+}
